@@ -2,12 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CountDown</title>
+  <title>TEAMO</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="https://cdn.iconscout.com/icon/free/png-256/free-corazon-56-76703.png?f=webp&w=256">
 </head>
 <body>
   <app-root></app-root>
 </body>
+<script>
+const year = 2024;  // Ajusta el año actual
+const targetDate = new Date(year, 9, 11).getTime();  // 11 de octubre de este año
+
+// countdown
+let timer = setInterval(function() {
+
+  // Obtener la fecha y hora actual
+  const today = new Date().getTime();
+
+  // Calcular la diferencia de tiempo en milisegundos
+  let diff = targetDate - today;
+
+  // Realizar los cálculos
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  // Mostrar el resultado
+  document.getElementById("timer").innerHTML =
+    "<div class=\"days\"> \
+      <div class=\"numbers\">" + days + "</div>Días</div> \
+    <div class=\"hours\"> \
+      <div class=\"numbers\">" + hours + "</div>Horas</div> \
+    <div class=\"minutes\"> \
+      <div class=\"numbers\">" + minutes + "</div>Minutos</div> \
+    <div class=\"seconds\"> \
+      <div class=\"numbers\">" + seconds + "</div>Segundos</div> \
+    </div>";
+
+  // Verificar si el tiempo ha llegado a 0
+  if (diff < 0) {
+    clearInterval(timer);
+    document.getElementById("timer").innerHTML = "¡La fecha ha llegado!";
+  }
+
+}, 1000);
+
+</script>
 </html>
